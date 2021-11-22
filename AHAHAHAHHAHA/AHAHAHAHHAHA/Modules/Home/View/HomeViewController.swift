@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 class HomeViewController: UIViewController, FlowContronllerable {
 
@@ -32,6 +33,9 @@ class HomeViewController: UIViewController, FlowContronllerable {
         return button
     }()
 
+    private var cancellableSet = Set<AnyCancellable>()
+    private let url = URL(string: "https://www.boredapi.com/api/activity")! // this is fine 🙂
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -39,7 +43,7 @@ class HomeViewController: UIViewController, FlowContronllerable {
 
         self.setupNavigationBar()
         self.addSubviews()
-        self.updateData()
+        self.loadData()
         self.setLayout()
 
         self.view.backgroundColor = .white
@@ -66,14 +70,35 @@ class HomeViewController: UIViewController, FlowContronllerable {
 
     private func setupNavigationBar() {
         self.title = "Activity"
-        self.navigationController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .done, target: self, action: #selector(self.updateData))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .done, target: self, action: #selector(self.updateData))
     }
 
     @objc private func updateData() {
-        self.textLabel.text = "\(Int.random(in: 1...10000))"
+        self.loadData()
     }
 
     @objc private func exitButtonAction() {
         self.completionHandler?(())
+    }
+
+    private func loadData() {
+        URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap() { element -> Data in
+                guard let httpResponse = element.response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200 else {
+                          throw URLError(.badServerResponse)
+                      }
+                return element.data
+            }
+            .decode(type: Activity.self, decoder: JSONDecoder())
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { element in
+                    DispatchQueue.main.async {
+                        self.textLabel.text = element.activity
+                    }
+                }
+            )
+            .store(in: &cancellableSet)
     }
 }

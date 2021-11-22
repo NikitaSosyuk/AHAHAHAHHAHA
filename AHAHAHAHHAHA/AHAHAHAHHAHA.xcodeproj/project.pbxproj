@@ -21,6 +21,7 @@
 		3C1C79EA274BFCD700E19DA1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1C79E9274BFCD700E19DA1 /* SignUpViewController.swift */; };
 		3C1C79EF274BFFB700E19DA1 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1C79EE274BFFB700E19DA1 /* HomeCoordinator.swift */; };
 		3C1C79F1274C01BE00E19DA1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1C79F0274C01BE00E19DA1 /* HomeViewController.swift */; };
+		3C1C79F4274C08EB00E19DA1 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1C79F3274C08EB00E19DA1 /* Activity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		3C1C79E9274BFCD700E19DA1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3C1C79EE274BFFB700E19DA1 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		3C1C79F0274C01BE00E19DA1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		3C1C79F3274C08EB00E19DA1 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 		3C1C79EC274BFF5A00E19DA1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				3C1C79F2274C08DE00E19DA1 /* Model */,
 				3C1C79ED274BFF6A00E19DA1 /* View */,
 				3C1C79EE274BFFB700E19DA1 /* HomeCoordinator.swift */,
 			);
@@ -144,6 +147,14 @@
 				3C1C79F0274C01BE00E19DA1 /* HomeViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3C1C79F2274C08DE00E19DA1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C1C79F3274C08EB00E19DA1 /* Activity.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +239,7 @@
 				3C1C79DE274BEF2E00E19DA1 /* Coodinatorable.swift in Sources */,
 				3C1C79E8274BF8AF00E19DA1 /* LoginPasswordViewController.swift in Sources */,
 				3C1C79E6274BF3E400E19DA1 /* AuthCoordinator.swift in Sources */,
+				3C1C79F4274C08EB00E19DA1 /* Activity.swift in Sources */,
 				3C1C79EA274BFCD700E19DA1 /* SignUpViewController.swift in Sources */,
 				3C1C79F1274C01BE00E19DA1 /* HomeViewController.swift in Sources */,
 				3C1C79EF274BFFB700E19DA1 /* HomeCoordinator.swift in Sources */,
