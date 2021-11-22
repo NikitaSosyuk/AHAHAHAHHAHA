@@ -94,8 +94,8 @@ class HomeViewController: UIViewController, FlowContronllerable {
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { element in
-                    DispatchQueue.main.async {
-                        self.textLabel.text = element.activity
+                    DispatchQueue.main.async { [weak self] in
+                        self?.textLabel.text = element.activity
                     }
                 }
             )

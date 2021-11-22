@@ -16,7 +16,7 @@ class AppCoordinator: Coordinatorable {
 
     // MARK: - Private Properties
 
-    private var childCoordinators: [Coordinatorable] = []
+    private var childCoordinator: Coordinatorable?
 
     // MARK: - Initializers
 
@@ -35,26 +35,24 @@ class AppCoordinator: Coordinatorable {
     }
 
     private func openHomeFlow() {
-        let homeCoordinator = HomeCoordinator(navigationController: self.navigationController)
-        self.childCoordinators.append(homeCoordinator)
+        childCoordinator = HomeCoordinator(navigationController: self.navigationController)
 
-        homeCoordinator.flowCompletionHandler = { [weak self] in
+        childCoordinator?.flowCompletionHandler = { [weak self] in
             UserDefaults.standard.set(false, forKey: AppCoordinator.registrationKey)
             self?.openAuthFlow()
         }
 
-        homeCoordinator.start()
+        childCoordinator?.start()
     }
 
     private func openAuthFlow() {
-        let authCoordinator = AuthCoordinator(navigationController: self.navigationController)
-        self.childCoordinators.append(authCoordinator)
+        childCoordinator = AuthCoordinator(navigationController: self.navigationController)
 
-        authCoordinator.flowCompletionHandler = { [weak self] in
+        childCoordinator?.flowCompletionHandler = { [weak self] in
             UserDefaults.standard.set(true, forKey: AppCoordinator.registrationKey)
             self?.openHomeFlow()
         }
 
-        authCoordinator.start()
+        childCoordinator?.start()
     }
 }
